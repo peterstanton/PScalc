@@ -73,7 +73,8 @@
         android:id="@+id/buttonMinus"
         android:layout_alignTop="@+id/button9"
         android:layout_toRightOf="@+id/button9"
-        android:layout_toEndOf="@+id/button9" />
+        android:layout_toEndOf="@+id/button9"
+        android:onClick="onOperandClick"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"

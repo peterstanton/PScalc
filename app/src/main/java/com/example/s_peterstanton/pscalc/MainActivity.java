@@ -55,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onOperandClick (View view)//grabs the operand symbol and concatenates it.
+    {
+
+    }
+
     public void onNumericClick (View view)  //concatenates in a new number.
     {
         String num = (String) view.getTag();  //grabs value from clicked button
