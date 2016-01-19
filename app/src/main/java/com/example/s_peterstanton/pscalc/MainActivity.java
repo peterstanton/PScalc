@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import java.lang.String;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,23 +52,41 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    String receivedInput;
+
     public void onDecimalClick (View view) //inserts decimal point, making number a double
     {
-
+        String dec = (String) view.getTag(); //grabs
+        receivedInput = receivedInput + dec; //inserts decimal point
     }
 
     public void onOperandClick (View view)//grabs the operand symbol and concatenates it.
     {
-
+        String operant = (String) view.getTag(); //grabs
+        receivedInput = receivedInput + " " + operant + " "; //inserts the operation with spaces around it so it parses.
     }
 
     public void onNumericClick (View view)  //concatenates in a new number.
     {
         String num = (String) view.getTag();  //grabs value from clicked button
+        receivedInput = receivedInput + num;  //concatenates
     }
 
     public void solveFunction (View view)  //computes values and outputs results
     {
+        EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
+        if (receivedInput.contains("."))
+        {
+            double result = Double.parseDouble(receivedInput);
+            String resultConvert = Double.toString(result);
+            displayedAnswer.setText(resultConvert);
+        }
+        else
+        {
+            int result = Integer.parseInt(receivedInput);
+            String resultConvert = Integer.toString(result);
+            displayedAnswer.setText(resultConvert);
+        }
 
     }
 }
