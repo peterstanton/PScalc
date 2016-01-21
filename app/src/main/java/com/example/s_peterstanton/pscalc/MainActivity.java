@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import java.lang.String;
 import android.widget.EditText;
+import java.util.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,15 +76,76 @@ public class MainActivity extends AppCompatActivity {
     public void solveFunction (View view)  //computes values and outputs results
     {
         EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
+        String givenInput[] = new String [receivedInput.length()];
+        Scanner inputParser = new Scanner(receivedInput);
+        int counter = 0;
+        while (inputParser.hasNext())
+        {
+            givenInput[counter] = inputParser.next();
+            counter++;
+        }
+
         if (receivedInput.contains("."))
         {
-            double result = Double.parseDouble(receivedInput);
+            double result = Double.parseDouble(givenInput[0]);  //seems to fail when I try to parse the given values from string.
+            for (counter = 1; counter <= receivedInput.length(); counter++)
+            {
+                if (givenInput[counter].contains("/"))
+                {
+                    result /= Double.parseDouble(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("-"))
+                {
+                    result -= Double.parseDouble(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("+"))
+                {
+                    result += Double.parseDouble(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("*"))
+                {
+                    result *= Double.parseDouble(givenInput[counter+1]);
+                    counter += 2;
+                }
+            }
+
+
+        //    double result = Double.parseDouble(receivedInput);   //this doesn't work.   deprecated
             String resultConvert = Double.toString(result);
             displayedAnswer.setText(resultConvert);
         }
         else
         {
-            int result = Integer.parseInt(receivedInput);
+
+            int result = Integer.parseInt(givenInput[0]);
+            for (counter = 1; counter <= receivedInput.length(); counter++)
+            {
+                if (givenInput[counter].contains("/"))
+                {
+                    result /= Integer.parseInt(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("-"))
+                {
+                    result -= Integer.parseInt(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("+"))
+                {
+                    result += Integer.parseInt(givenInput[counter+1]);
+                    counter += 2;
+                }
+                else if (givenInput[counter].contains("*"))
+                {
+                    result *= Integer.parseInt(givenInput[counter+1]);
+                    counter += 2;
+                }
+            }
+
+       //     int result = Integer.parseInt(receivedInput);   //this doesn't work. deprecated
             String resultConvert = Integer.toString(result);
             displayedAnswer.setText(resultConvert);
         }
