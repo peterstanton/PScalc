@@ -53,24 +53,37 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    String receivedInput;
+    String receivedInput = "0";
 
     public void onDecimalClick (View view) //inserts decimal point, making number a double
     {
+        EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
         String dec = (String) view.getTag(); //grabs
         receivedInput = receivedInput + dec; //inserts decimal point
+        displayedAnswer.setText(receivedInput);
+    }
+
+    public void clearAll (View view)
+    {
+        receivedInput = "";
+        EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
+        displayedAnswer.setText("");
     }
 
     public void onOperandClick (View view)//grabs the operand symbol and concatenates it.
     {
+        EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
         String operant = (String) view.getTag(); //grabs
         receivedInput = receivedInput + " " + operant + " "; //inserts the operation with spaces around it so it parses.
+        displayedAnswer.setText(receivedInput);
     }
 
     public void onNumericClick (View view)  //concatenates in a new number.
     {
+        EditText displayedAnswer = (EditText) findViewById (R.id.resultField);
         String num = (String) view.getTag();  //grabs value from clicked button
         receivedInput = receivedInput + num;  //concatenates
+        displayedAnswer.setText(receivedInput);
     }
 
     public void solveFunction (View view)  //computes values and outputs results
@@ -88,27 +101,27 @@ public class MainActivity extends AppCompatActivity {
         if (receivedInput.contains("."))
         {
             double result = Double.parseDouble(givenInput[0]);  //seems to fail when I try to parse the given values from string.
-            for (counter = 1; counter <= receivedInput.length(); counter++)
+            for (int i = 1; counter < counter;)
             {
-                if (givenInput[counter].contains("/"))
+                if (givenInput[i].contains("/"))
                 {
-                    result /= Double.parseDouble(givenInput[counter+1]);
-                    counter += 2;
+                    result /= Double.parseDouble(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("-"))
+                else if (givenInput[i].contains("-"))
                 {
-                    result -= Double.parseDouble(givenInput[counter+1]);
-                    counter += 2;
+                    result -= Double.parseDouble(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("+"))
+                else if (givenInput[i].contains("+"))
                 {
-                    result += Double.parseDouble(givenInput[counter+1]);
-                    counter += 2;
+                    result += Double.parseDouble(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("*"))
+                else if (givenInput[i].contains("*"))
                 {
-                    result *= Double.parseDouble(givenInput[counter+1]);
-                    counter += 2;
+                    result *= Double.parseDouble(givenInput[i+1]);
+                    i += 2;
                 }
             }
 
@@ -121,27 +134,27 @@ public class MainActivity extends AppCompatActivity {
         {
 
             int result = Integer.parseInt(givenInput[0]);
-            for (counter = 1; counter <= receivedInput.length(); counter++)
+            for (int i = 1; i < counter;)
             {
-                if (givenInput[counter].contains("/"))
+                if (givenInput[i].contains("/"))
                 {
-                    result /= Integer.parseInt(givenInput[counter+1]);
-                    counter += 2;
+                    result /= Integer.parseInt(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("-"))
+                else if (givenInput[i].contains("-"))
                 {
-                    result -= Integer.parseInt(givenInput[counter+1]);
-                    counter += 2;
+                    result -= Integer.parseInt(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("+"))
+                else if (givenInput[i].contains("+"))
                 {
-                    result += Integer.parseInt(givenInput[counter+1]);
-                    counter += 2;
+                    result += Integer.parseInt(givenInput[i+1]);
+                    i += 2;
                 }
-                else if (givenInput[counter].contains("*"))
+                else if (givenInput[i].contains("*"))
                 {
-                    result *= Integer.parseInt(givenInput[counter+1]);
-                    counter += 2;
+                    result *= Integer.parseInt(givenInput[i+1]);
+                    i += 2;
                 }
             }
 

@@ -207,6 +207,30 @@
         android:layout_alignLeft="@+id/buttonMultiply"
         android:layout_alignStart="@+id/buttonMultiply"
         android:onClick="onDecimalClick"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:tag="Clear"
+        android:id="@+id/clearButton"
+        android:layout_alignBottom="@+id/buttonEnter"
+        android:layout_toRightOf="@+id/button3"
+        android:layout_toEndOf="@+id/button3"
+        android:onClick="clearAll"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:tag="0"
+        android:id="@+id/zeroButton"
+        android:layout_alignBottom="@+id/Decimal"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onNumericClick"/>
 </RelativeLayout>
 
 
